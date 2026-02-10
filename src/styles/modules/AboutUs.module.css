@@ -13,8 +13,8 @@
 
 /* Header Section */
 .headerSection {
-  max-width: 80rem;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   padding: 3rem 1.5rem;
   width: 100%;
   text-align: left;
@@ -56,8 +56,8 @@
 
 /* Journey Section */
 .journeySection {
-  max-width: 80rem;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   padding: 3rem 1.5rem;
   width: 100%;
 }
@@ -116,8 +116,8 @@
 
 /* Statistics Section */
 .statsSection {
-  max-width: 80rem;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   padding: 4rem 1.5rem;
   width: 100%;
 }

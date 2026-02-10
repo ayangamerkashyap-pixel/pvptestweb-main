@@ -17,8 +17,8 @@
 }
 
 .navContainer {
-  max-width: 80rem;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   padding: 0 1.5rem;
 }
 

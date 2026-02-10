@@ -13,8 +13,8 @@
 
 /* Header Section */
 .headerSection {
-  max-width: 80rem;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   padding: 3rem 1.5rem;
   width: 100%;
   text-align: center;
@@ -55,15 +55,15 @@
 
 /* Services Grid */
 .servicesSection {
-  max-width: 80rem;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   padding: 3rem 1.5rem;
   width: 100%;
 }
 
 .servicesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 2rem;
   margin-bottom: 4rem;
   width: 100%;
@@ -141,7 +141,18 @@
   line-height: 1.6;
   margin-bottom: 1.5rem;
   flex-grow: 1;
-  transition: color 0.3s ease;
+  /* Show only ~4 lines by default */
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-height: 6.4em; /* 4 lines * 1.6 line-height */
+  transition: color 0.3s ease, max-height 0.4s ease;
+}
+
+.serviceCard:hover .serviceDescription {
+  -webkit-line-clamp: unset;
+  max-height: 500px; /* large enough to show full text */
 }
 
 .serviceDescription.dark {
@@ -172,9 +183,9 @@
   color: white;
   overflow: hidden;
   position: relative;
-  max-width: 80rem;
-  margin: 0 auto;
-  width: calc(100% - 3rem);
+  max-width: 100%;
+  margin: 0;
+  width: 100%;
 }
 
 .ctaBackground {

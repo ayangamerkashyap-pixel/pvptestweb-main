@@ -14,8 +14,8 @@
 
 /* Hero Section */
 .heroSection {
-  max-width: 80rem;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   padding: 2rem 1.5rem;
   width: 100%;
 }
@@ -108,8 +108,8 @@
 
 /* News Section */
 .newsSection {
-  max-width: 80rem;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   padding: 4rem 1.5rem;
   width: 100%;
 }
@@ -296,8 +296,8 @@
 
 /* Gallery Section */
 .gallerySection {
-  max-width: 80rem;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   padding: 4rem 1.5rem;
   width: 100%;
 }

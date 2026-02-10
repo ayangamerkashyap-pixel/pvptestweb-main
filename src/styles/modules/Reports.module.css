@@ -13,8 +13,8 @@
 
 /* Header Section */
 .headerSection {
-  max-width: 80rem;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   padding: 3rem 1.5rem;
   width: 100%;
   text-align: center;
@@ -55,8 +55,8 @@
 
 /* Report Section */
 .reportSection {
-  max-width: 80rem;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   padding: 3rem 1.5rem;
   width: 100%;
 }
