@@ -1,0 +1,285 @@
+/* AboutUs Page Styles */
+
+.aboutContainer {
+  background-color: #ffffff;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.aboutContainer.dark {
+  background-color: #030712;
+}
+
+/* Header Section */
+.headerSection {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  width: 100%;
+  text-align: left;
+}
+
+.headerTitle {
+  font-size: 2.25rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  color: #0f172a;
+  transition: color 0.3s ease;
+}
+
+.headerTitle.dark {
+  color: white;
+}
+
+.headerUnderline {
+  width: 5rem;
+  height: 0.25rem;
+  background-color: #106100;
+  border-radius: 9999px;
+  margin: 1.5rem auto;
+}
+
+.headerDescription {
+  font-size: 1.125rem;
+  color: #4b5563;
+  max-width: 100rem;
+  margin: 0 auto;
+  line-height: 1.6;
+  transition: color 0.3s ease;
+  align: left;
+}
+
+.headerDescription.dark {
+  color: #9ca3af;
+}
+
+/* Journey Section */
+.journeySection {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  width: 100%;
+}
+
+.journeyGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  align-items: center;
+  width: 100%;
+}
+
+.journeyImage {
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  max-height: 400px;
+  background: linear-gradient(135deg, #106100 0%, #106100 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.journeyContent h2 {
+  font-size: 1.875rem;
+  font-weight: 900;
+  color: #0f172a;
+  transition: color 0.3s ease;
+  margin-bottom: 0.5rem;
+}
+
+.journeyContent.dark h2 {
+  color: white;
+}
+
+.journeyTitleUnderline {
+  width: 3rem;
+  height: 0.25rem;
+  background-color: #106100;
+  border-radius: 9999px;
+  margin-bottom: 1.5rem;
+}
+
+.journeyParagraph {
+  color: #4b5563;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  transition: color 0.3s ease;
+}
+
+.journeyParagraph.dark {
+  color: #9ca3af;
+}
+
+/* Statistics Section */
+.statsSection {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+  width: 100%;
+}
+
+.statsSectionTitle {
+  font-size: 1.875rem;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #0f172a;
+  transition: color 0.3s ease;
+}
+
+.statsSectionTitle.dark {
+  color: white;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.statCard {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+  display: flex;
+  gap: 1rem;
+}
+
+.statCard:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+}
+
+.statCard.dark {
+  background-color: #1f2937;
+  border-color: #1e293b;
+}
+
+.statIconContainer {
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.statCard:hover .statIconContainer {
+  transform: scale(1.2);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.statContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.statLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+  transition: color 0.3s ease;
+}
+
+.statLabel.dark {
+  color: #9ca3af;
+}
+
+.statValue {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #0f172a;
+  margin: 0.25rem 0;
+  transition: color 0.3s ease;
+}
+
+.statValue.dark {
+  color: white;
+}
+
+.statSubtext {
+  font-size: 0.75rem;
+  color: #6b7280;
+  transition: color 0.3s ease;
+}
+
+.statSubtext.dark {
+  color: #6b7280;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .headerSection {
+    padding: 2rem 1.5rem;
+  }
+
+  .headerTitle {
+    font-size: 1.875rem;
+  }
+
+  .journeySection {
+    padding: 2rem 1.5rem;
+  }
+
+  .journeyGrid {
+    gap: 2rem;
+  }
+
+  .journeyContent h2 {
+    font-size: 1.5rem;
+  }
+
+  .statsSection {
+    padding: 2rem 1.5rem;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .headerSection,
+  .journeySection,
+  .statsSection {
+    padding: 1.5rem 1rem;
+  }
+
+  .headerTitle {
+    font-size: 1.5rem;
+  }
+
+  .headerDescription {
+    font-size: 1rem;
+  }
+
+  .journeyContent h2 {
+    font-size: 1.25rem;
+  }
+
+  .statCard {
+    padding: 1.5rem;
+  }
+
+  .statValue {
+    font-size: 1.25rem;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+}

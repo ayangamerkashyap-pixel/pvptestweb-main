@@ -1,0 +1,8 @@
+.git
+.gitignore
+.vercelignore
+netlify.toml
+README.md
+node_modules
+.env
+.env.local
