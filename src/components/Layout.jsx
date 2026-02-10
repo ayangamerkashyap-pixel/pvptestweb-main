@@ -1,5 +1,4 @@
 import { Outlet } from 'react-router-dom'
-import Header from './Header'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import styles from '../styles/modules/Layout.module.css'
@@ -9,9 +8,6 @@ export default function Layout() {
   return (
     <div className={styles.layoutContainer}>
       <div className={styles.layoutHeader}>
-        <Header />
-      </div>
-      <div className={styles.layoutNavbar}>
         <Navbar />
       </div>
       <main className={styles.layoutMain}>

@@ -16,14 +16,7 @@
 .layoutHeader {
   flex-shrink: 0;
   width: 100%;
-}
-
-.layoutNavbar {
-  flex-shrink: 0;
-  width: 100%;
-  position: sticky;
-  top: 0;
-  z-index: 50;
+  height: 4.5rem;
 }
 
 .layoutMain {
@@ -51,10 +44,18 @@
   .layoutContainer {
     min-height: calc(100vh - 20px);
   }
+
+  .layoutHeader {
+    height: 3.5rem;
+  }
 }
 
 @media (max-width: 480px) {
   .layoutContainer {
     min-height: 100vh;
+  }
+
+  .layoutHeader {
+    height: 3rem;
   }
 }

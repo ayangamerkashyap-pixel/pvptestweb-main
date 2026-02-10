@@ -1,10 +1,25 @@
 import { Link, useLocation } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styles from '../styles/modules/Navbar.module.css'
+import logo from '../../Images/Logo.jpg'
 
 export default function Navbar() {
   const location = useLocation()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10)
+    }
+
+    handleScroll()
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   const isActive = (path) => location.pathname === path
 
@@ -19,9 +34,17 @@ export default function Navbar() {
   ]
 
   return (
-    <nav className={styles.navbar}>
+    <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.navContainer}>
         <div className={styles.navContent}>
+          <div className={styles.logoSection}>
+            <img src={logo} alt="Purbottar Vikash Parishad Logo" className={styles.logo} />
+            <div className={styles.logoTextGroup}>
+              <span className={styles.logoTitle}>Purbottar Vikash Parishad</span>
+              <span className={styles.logoTagline}>Tinsukia</span>
+            </div>
+          </div>
+
           <div className={styles.navLinks}>
             {navLinks.map((link) => (
               <Link
@@ -35,29 +58,18 @@ export default function Navbar() {
           </div>
 
           <div className={styles.navRight}>
-            {/* <div className={styles.searchBox}>
-              <span className="material-symbols-outlined">search</span>
-              <input
-                className={styles.searchInput}
-                placeholder="Search resources..."
-                type="text"
-              />
-            </div> */}
-            <Link
-              to="/contact"
-              className={styles.contactBtn}
-            >
+            <Link to="/contact" className={styles.contactBtn}>
               Contact Us
             </Link>
-          </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className={styles.mobileMenuButton}
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            <span className="material-symbols-outlined">menu</span>
-          </button>
+            {/* Mobile Menu Button */}
+            <button
+              className={styles.mobileMenuButton}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              <span className="material-symbols-outlined">menu</span>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
