@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1770972292624,
+    "title": "Test News 1",
+    "category": "Test 1",
+    "date": "13 Feb 2026",
+    "description": "Test Description",
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=500&fit=crop",
+    "categoryColor": "bg-primary/10 text-primary"
+  }
+]

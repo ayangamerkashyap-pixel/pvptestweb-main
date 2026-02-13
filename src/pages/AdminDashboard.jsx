@@ -7,6 +7,7 @@ import {
   isAdminLoggedIn,
   fetchGallery,
   uploadGallery,
+  deleteGalleryImage,
   fetchContact,
   updateContact,
   fetchNews,
@@ -27,6 +28,16 @@ function AdminGallerySection() {
       .then(setImages)
       .catch(() => {})
   }, [])
+
+  async function handleDelete(id) {
+    if (!window.confirm('Delete this gallery image?')) return
+    try {
+      await deleteGalleryImage(id)
+      setImages((prev) => prev.filter((img) => img.id !== id))
+    } catch (err) {
+      setStatus({ type: 'error', message: err.message || 'Failed to delete image.' })
+    }
+  }
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -52,7 +63,14 @@ function AdminGallerySection() {
 
   return (
     <div>
-      <h2 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '1rem' }}>
+      <h2
+        style={{
+          fontSize: '1.25rem',
+          fontWeight: 700,
+          marginBottom: '1rem',
+          color: '#111827',
+        }}
+      >
         Gallery Images
       </h2>
       <form
@@ -92,7 +110,13 @@ function AdminGallerySection() {
         <div>
           <label
             htmlFor="galleryFile"
-            style={{ display: 'block', fontSize: '0.9rem', fontWeight: 600, marginBottom: '0.25rem' }}
+            style={{
+              display: 'block',
+              fontSize: '0.9rem',
+              fontWeight: 600,
+              marginBottom: '0.25rem',
+              color: '#111827',
+            }}
           >
             Image File
           </label>
@@ -138,8 +162,28 @@ function AdminGallerySection() {
               overflow: 'hidden',
               border: '1px solid #e5e7eb',
               backgroundColor: '#f9fafb',
+              position: 'relative',
             }}
           >
+            <button
+              type="button"
+              onClick={() => handleDelete(img.id)}
+              style={{
+                position: 'absolute',
+                top: '0.35rem',
+                right: '0.35rem',
+                padding: '0.15rem 0.45rem',
+                borderRadius: '999px',
+                border: '1px solid #fecaca',
+                backgroundColor: '#fee2e2',
+                color: '#b91c1c',
+                fontSize: '0.7rem',
+                cursor: 'pointer',
+                zIndex: 1,
+              }}
+            >
+              ✕
+            </button>
             <img
               src={img.src}
               alt={img.title}
@@ -191,7 +235,14 @@ function AdminContactSection() {
 
   return (
     <div>
-      <h2 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '1rem' }}>
+      <h2
+        style={{
+          fontSize: '1.25rem',
+          fontWeight: 700,
+          marginBottom: '1rem',
+          color: '#111827',
+        }}
+      >
         Contact Details
       </h2>
       <form
@@ -379,7 +430,14 @@ function AdminNewsSection() {
 
   return (
     <div>
-      <h2 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '1rem' }}>
+      <h2
+        style={{
+          fontSize: '1.25rem',
+          fontWeight: 700,
+          marginBottom: '1rem',
+          color: '#111827',
+        }}
+      >
         News &amp; Events
       </h2>
       <form
@@ -619,7 +677,14 @@ function AdminAccountSection() {
 
   return (
     <div>
-      <h2 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '1rem' }}>
+      <h2
+        style={{
+          fontSize: '1.25rem',
+          fontWeight: 700,
+          marginBottom: '1rem',
+          color: '#111827',
+        }}
+      >
         Admin Account
       </h2>
       <form

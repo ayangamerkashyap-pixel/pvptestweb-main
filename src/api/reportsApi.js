@@ -132,6 +132,21 @@ export async function uploadGallery({ title, file }) {
   return data
 }
 
+export async function deleteGalleryImage(id) {
+  const res = await fetch(`${API_BASE_URL}/api/gallery/${id}`, {
+    method: 'DELETE',
+    headers: {
+      ...authHeaders(),
+    },
+  })
+
+  const data = await res.json().catch(() => ({}))
+  if (!res.ok) {
+    throw new Error(data.error || 'Failed to delete image')
+  }
+  return data
+}
+
 export async function updateContact(details) {
   const res = await fetch(`${API_BASE_URL}/api/contact`, {
     method: 'PUT',

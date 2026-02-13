@@ -331,6 +331,34 @@ app.post('/api/gallery', requireAdmin, uploadGalleryImage.single('image'), (req,
   }
 })
 
+// Admin: delete gallery image
+app.delete('/api/gallery/:id', requireAdmin, (req, res) => {
+  try {
+    const id = Number(req.params.id)
+    const gallery = readGallery()
+    const image = gallery.find((item) => item.id === id)
+    const updated = gallery.filter((item) => item.id !== id)
+    writeGallery(updated)
+
+    // Best-effort delete of physical file if it's under our uploads dir
+    if (image && image.src && image.src.startsWith('/uploads/')) {
+      const filePath = path.join(uploadsDir, image.src.replace('/uploads/', ''))
+      if (fs.existsSync(filePath)) {
+        fs.unlink(filePath, (err) => {
+          if (err) {
+            console.warn('Failed to delete gallery file', filePath, err)
+          }
+        })
+      }
+    }
+
+    res.json({ success: true })
+  } catch (error) {
+    console.error('Error deleting gallery image', error)
+    res.status(500).json({ error: 'Internal server error' })
+  }
+})
+
 // --- Contact API ---
 // Public: get contact info
 app.get('/api/contact', (req, res) => {
