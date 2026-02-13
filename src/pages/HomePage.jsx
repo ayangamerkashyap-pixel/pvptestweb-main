@@ -1,40 +1,23 @@
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from '../styles/modules/HomePage.module.css'
-import { galleryImages } from '../data/galleryData'
+import { fetchGallery, fetchNews } from '../api/reportsApi'
 import HeroSlideshow from '../components/HeroSlideshow'
 
 export default function HomePage() {
   const [selectedImage, setSelectedImage] = useState(null)
-  const news = [
-    {
-      id: 1,
-      title: 'New Policy Implementation for Digital Infrastructure',
-      category: 'Policy',
-      date: 'Oct 24, 2024',
-      description: 'The organization has announced a comprehensive framework designed to modernize our digital backbone through strategic community partnerships.',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDMdDudF3A9guMN-HxIXyappQUds2ItJit4k1_9br0X3m1EacygqIIw7IC01wCdA5n59Dj2b2J_8amNJ1Pn51nRNdfOWLhlgQXv1bynYJpok5k6SNaWDXAmIrOIjPyIHuUHNsyP-IMWgijfk3bZ4BX0I0MeqDO-QCUKdPYQpePWO4LIQ6FGXiCdLefd9qvH0vXs6Y6g9o4N-mo_PclL-2BCzYWrFP8UgVtu3SKGMoeudz9xVCInumLEDh26ZeKlE-_4E0FnusyjGeyr',
-      categoryColor: 'bg-primary/10 text-primary',
-    },
-    {
-      id: 2,
-      title: 'Health Camp Initiative Reaches 500+ Beneficiaries',
-      category: 'Report',
-      date: 'Oct 20, 2024',
-      description: 'Our latest health camp across rural communities has successfully provided medical check-ups and health services to over 500 individuals.',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBfNA-m6Oq02g6mxFUy1Wh28vjhQodfBGkwKWCvXMfj39828fCZHOSXjTBf8FPo8o6dJ_86Ux5l0CmymM0twBM5muFoyroC6fE5njh6BUjcRxZVphd86Ihr_YK_s4Wvqqysh7e1YCQulzt1WRuQ8K8tl3aKuPc4MYRlfoAmp18sr1xs7MFgNByPY5ErH4-xSSlaAn3IXjI6k3Z_5rMY5PKr9gp-BjDtEXdRCMG39T2ENmzTxS0KN3A5b1rLnaUZ9yYRO35Tud0uCaPe',
-      categoryColor: 'bg-green-100 text-green-700',
-    },
-    {
-      id: 3,
-      title: 'Community Outreach: Skill Training Program Launch',
-      category: 'Community',
-      date: 'Oct 15, 2024',
-      description: 'Launching a new skill training program to empower youth and create sustainable livelihood opportunities in rural areas.',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDm5tPmm312anWIrwUeP9SgC_8AEudxffH66TWgd1et9x2GMj6adSZxZlFDYzpUCPnBkZGdYjV8MYCAA3rSPEiHBoVHtKHtbyxKtmkq1odyx86kH_QK4WctZ6z4O3OYll7Shj52yJK2a0nBlRXL4D25sqoxzVP6gGeohVdzN9XvnN0B4acc9TIdhX2DmBnIFDQxSa06EUdSsS1rNISYzt9sCLOFcqqjjZibDypRiGkkOHOqCPF-K0UQb3Cf3dyBwHO13oMSEwqgPz__',
-      categoryColor: 'bg-orange-100 text-orange-700',
-    },
-  ]
+  const [galleryImages, setGalleryImages] = useState([])
+  const [news, setNews] = useState([])
+
+  useEffect(() => {
+    fetchGallery()
+      .then(setGalleryImages)
+      .catch(() => {})
+
+    fetchNews()
+      .then(setNews)
+      .catch(() => {})
+  }, [])
 
   return (
     <div className={styles.homePageContainer}>
@@ -59,17 +42,14 @@ export default function HomePage() {
         </div>
         <div className={styles.newsGrid}>
           {news.map((item) => (
-            <article
-              key={item.id}
-              className={styles.newsCard}
-            >
+            <article key={item.id} className={styles.newsCard}>
               <div
                 className={styles.newsCardImage}
                 style={{ backgroundImage: `url("${item.image}")` }}
               />
               <div className={styles.newsCardContent}>
                 <div className={styles.newsCardMeta}>
-                  <span className={`${styles.newsCardCategory} ${item.categoryColor}`}>
+                  <span className={`${styles.newsCardCategory} ${item.categoryColor || 'bg-primary/10 text-primary'}`}>
                     {item.category}
                   </span>
                   <span className={styles.newsCardDate}>{item.date}</span>

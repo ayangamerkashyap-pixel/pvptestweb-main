@@ -1,6 +1,26 @@
+import { useEffect, useState } from 'react'
 import styles from '../styles/modules/Contact.module.css'
+import { fetchContact } from '../api/reportsApi'
 
 export default function Contact() {
+  const [contact, setContact] = useState(null)
+
+  useEffect(() => {
+    fetchContact()
+      .then(setContact)
+      .catch(() => {})
+  }, [])
+
+  if (!contact) {
+    return (
+      <div className={styles.contactContainer}>
+        <div className={styles.contactContent}>
+          <p>Loading contact details...</p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className={styles.contactContainer}>
       <div className={styles.contactContent}>
@@ -19,10 +39,12 @@ export default function Contact() {
           </div>
           <h3 className="text-xl font-bold mb-2">Address</h3>
           <p className="text-gray-600 dark:text-gray-400">
-            Purbottar Vikash Parishad<br />
-            Napukhuri Extension Part-II,<br />
-            P.o., P.S. & DIST: Tinsukia,<br />
-            Assam - 786125
+            {contact.addressLines?.map((line, i) => (
+              <span key={i}>
+                {line}
+                {i < contact.addressLines.length - 1 && <br />}
+              </span>
+            ))}
           </p>
         </div>
 
@@ -33,8 +55,8 @@ export default function Contact() {
           </div>
           <h3 className="text-xl font-bold mb-2">Email</h3>
           <p className="text-gray-600 dark:text-gray-400">
-            <a href="mailto:purbottarvikashparishad@gmail.com" className="hover:text-primary transition-colors">
-              purbottarvikashparishad@gmail.com
+            <a href={`mailto:${contact.email}`} className="hover:text-primary transition-colors">
+              {contact.email}
             </a>
           </p>
         </div>
@@ -46,8 +68,8 @@ export default function Contact() {
           </div>
           <h3 className="text-xl font-bold mb-2">Phone</h3>
           <p className="text-gray-600 dark:text-gray-400">
-            <a href="tel:+919435135088" className="hover:text-primary transition-colors">
-              +91 9435135088
+            <a href={`tel:${contact.phone?.replace(/\s/g, '')}`} className="hover:text-primary transition-colors">
+              {contact.phone}
             </a>
           </p>
         </div>
@@ -73,18 +95,12 @@ export default function Contact() {
           <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-8 border border-blue-200 dark:border-blue-700">
             <h3 className="text-lg font-bold mb-4">Office Hours</h3>
             <ul className="space-y-2 text-gray-700 dark:text-gray-300">
-              <li className="flex justify-between">
-                <span>Monday - Friday:</span>
-                <span className="font-semibold">9:00 AM - 5:00 PM</span>
-              </li>
-              <li className="flex justify-between">
-                <span>Saturday:</span>
-                <span className="font-semibold">10:00 AM - 2:00 PM</span>
-              </li>
-              <li className="flex justify-between">
-                <span>Sunday:</span>
-                <span className="font-semibold">Closed</span>
-              </li>
+              {contact.officeHours?.map((oh, i) => (
+                <li key={i} className="flex justify-between">
+                  <span>{oh.dayRange}:</span>
+                  <span className="font-semibold">{oh.time}</span>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
