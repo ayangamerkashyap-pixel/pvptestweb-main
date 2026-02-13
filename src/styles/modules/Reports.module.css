@@ -61,73 +61,43 @@
   width: 100%;
 }
 
-.reportGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+/* Paragraph-style report list */
+.reportList {
+  max-width: 60rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
-  width: 100%;
 }
 
-.reportCard {
-  background-color: white;
-  border-radius: 1rem;
-  overflow: hidden;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+.reportParagraph {
+  text-align: left;
 }
 
-.reportCard:hover {
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-  transform: translateY(-4px);
+.reportParagraphYear {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #106100;
+  margin-bottom: 0.25rem;
 }
 
-.reportCard.dark {
-  background-color: #1f2937;
-  border-color: #1e293b;
-}
-
-.reportHeader {
-  background: linear-gradient(135deg, #106100, #0ea5e9);
-  padding: 2rem;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.reportYear {
-  font-size: 2rem;
-  font-weight: 900;
-}
-
-.reportTitle {
+.reportParagraphTitle {
   font-size: 1.125rem;
   font-weight: 700;
-  line-height: 1.4;
+  margin-bottom: 0.5rem;
+  color: #0f172a;
 }
 
-.reportContent {
-  padding: 1.5rem;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.reportDescription {
+.reportParagraphText {
+  font-size: 0.95rem;
   color: #4b5563;
-  font-size: 0.875rem;
-  line-height: 1.6;
-  margin-bottom: 1rem;
-  flex-grow: 1;
-  transition: color 0.3s ease;
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
 }
 
-.reportDescription.dark {
-  color: #9ca3af;
+.reportParagraphLinks {
+  font-size: 0.9rem;
+  color: #374151;
 }
 
 .reportMeta {
@@ -170,6 +140,16 @@
   display: flex;
   gap: 0.75rem;
   width: 100%;
+}
+
+.reportLinkAnchor {
+  color: #106100;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.reportLinkAnchor:hover {
+  text-decoration: underline;
 }
 
 .reportButton {
@@ -231,11 +211,6 @@
     padding: 2rem 1.5rem;
   }
 
-  .reportGrid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-  }
-
   .reportHeader {
     padding: 1.5rem;
   }
@@ -263,13 +238,11 @@
     font-size: 1rem;
   }
 
-  .reportGrid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
   .reportCard {
     border-radius: 0.75rem;
+    flex: 1 1 100%; /* single column on very small screens */
+    min-height: 0;
+    max-height: none; /* allow natural height on very small screens */
   }
 
   .reportHeader {

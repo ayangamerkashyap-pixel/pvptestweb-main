@@ -24,6 +24,8 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  /* Offset for fixed navbar so content isn't hidden underneath */
+  padding-top: 4.5rem;
 }
 
 .mainContent {
@@ -48,6 +50,10 @@
   .layoutHeader {
     height: 3.5rem;
   }
+
+  .layoutMain {
+    padding-top: 3.5rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -57,5 +63,9 @@
 
   .layoutHeader {
     height: 3rem;
+  }
+
+  .layoutMain {
+    padding-top: 3rem;
   }
 }

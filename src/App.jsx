@@ -6,6 +6,7 @@ import Services from './pages/Services'
 import Gallery from './pages/Gallery'
 import Vision from './pages/Vision'
 import Reports from './pages/Reports'
+import ReportSummary from './pages/ReportSummary'
 import Contact from './pages/Contact'
 import Donate from './pages/Donate'
 
@@ -20,6 +21,7 @@ export default function App() {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/vision" element={<Vision />} />
           <Route path="/reports" element={<Reports />} />
+          <Route path="/reports/:year" element={<ReportSummary />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/donate" element={<Donate />} />
         </Route>

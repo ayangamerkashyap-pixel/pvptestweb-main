@@ -22,7 +22,10 @@
 
 .heroContainer {
   position: relative;
-  border-radius: 1rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
   overflow: hidden;
   width: 100%;
 }
@@ -365,6 +368,10 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .heroImage {
+    min-height: calc(250px + 3rem);
+  }
+
   .heroTitle {
     font-size: 1.5rem;
   }
@@ -389,6 +396,10 @@
 }
 
 @media (max-width: 480px) {
+  .heroImage {
+    min-height: calc(250px + 3rem);
+  }
+
   .heroSection,
   .newsSection,
   .gallerySection {
