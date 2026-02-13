@@ -111,6 +111,40 @@ export async function uploadReport({ year, label, type, file }) {
   return data
 }
 
+export async function updateReport(reportId, updates) {
+  const res = await fetch(`${API_BASE_URL}/api/reports/${reportId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      ...authHeaders(),
+    },
+    body: JSON.stringify(updates),
+  })
+
+  const data = await res.json().catch(() => ({}))
+  if (!res.ok) {
+    throw new Error(data.error || 'Failed to update report')
+  }
+
+  return data
+}
+
+export async function deleteReport(reportId) {
+  const res = await fetch(`${API_BASE_URL}/api/reports/${reportId}`, {
+    method: 'DELETE',
+    headers: {
+      ...authHeaders(),
+    },
+  })
+
+  const data = await res.json().catch(() => ({}))
+  if (!res.ok) {
+    throw new Error(data.error || 'Failed to delete report')
+  }
+
+  return data
+}
+
 export async function uploadGallery({ title, file }) {
   const formData = new FormData()
   if (title) formData.append('title', title)

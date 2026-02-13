@@ -831,72 +831,79 @@ export default function AdminDashboard() {
       <section className={styles.reportSection}>
         <div
           style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginBottom: '1.5rem',
-            gap: '1rem',
-            flexWrap: 'wrap',
+            maxWidth: '72rem',
+            margin: '0 auto',
           }}
         >
-          <nav
+          <div
             style={{
               display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: '1.5rem',
+              gap: '1rem',
               flexWrap: 'wrap',
-              gap: '0.5rem',
             }}
           >
-            {[
-              { id: 'gallery', label: 'Gallery Images' },
-              { id: 'contact', label: 'Contact Details' },
-              { id: 'reports', label: 'Reports' },
-              { id: 'news', label: 'News & Events' },
-              { id: 'account', label: 'Admin Account' },
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                type="button"
-                onClick={() => setActiveTab(tab.id)}
-                style={{
-                  padding: '0.4rem 0.9rem',
-                  borderRadius: '999px',
-                  border: '1px solid #d1d5db',
-                  backgroundColor: activeTab === tab.id ? '#106100' : '#ffffff',
-                  color: activeTab === tab.id ? '#ffffff' : '#111827',
-                  fontSize: '0.85rem',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  transition: 'background-color 0.2s ease, color 0.2s ease',
-                }}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </nav>
+            <nav
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: '0.5rem',
+              }}
+            >
+              {[
+                { id: 'gallery', label: 'Gallery Images' },
+                { id: 'contact', label: 'Contact Details' },
+                { id: 'reports', label: 'Reports' },
+                { id: 'news', label: 'News & Events' },
+                { id: 'account', label: 'Admin Account' },
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setActiveTab(tab.id)}
+                  style={{
+                    padding: '0.4rem 0.9rem',
+                    borderRadius: '999px',
+                    border: '1px solid #d1d5db',
+                    backgroundColor: activeTab === tab.id ? '#106100' : '#ffffff',
+                    color: activeTab === tab.id ? '#ffffff' : '#111827',
+                    fontSize: '0.85rem',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s ease, color 0.2s ease',
+                  }}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </nav>
 
-          <button
-            type="button"
-            onClick={handleLogout}
-            style={{
-              padding: '0.4rem 0.9rem',
-              borderRadius: '999px',
-              border: '1px solid #fecaca',
-              backgroundColor: '#fee2e2',
-              color: '#b91c1c',
-              fontSize: '0.8rem',
-              fontWeight: 600,
-              cursor: 'pointer',
-            }}
-          >
-            Log out
-          </button>
+            <button
+              type="button"
+              onClick={handleLogout}
+              style={{
+                padding: '0.4rem 0.9rem',
+                borderRadius: '999px',
+                border: '1px solid #fecaca',
+                backgroundColor: '#fee2e2',
+                color: '#b91c1c',
+                fontSize: '0.8rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+              }}
+            >
+              Log out
+            </button>
+          </div>
+
+          {activeTab === 'gallery' && <AdminGallerySection />}
+          {activeTab === 'contact' && <AdminContactSection />}
+          {activeTab === 'reports' && <ReportsAdmin />}
+          {activeTab === 'news' && <AdminNewsSection />}
+          {activeTab === 'account' && <AdminAccountSection />}
         </div>
-
-        {activeTab === 'gallery' && <AdminGallerySection />}
-        {activeTab === 'contact' && <AdminContactSection />}
-        {activeTab === 'reports' && <ReportsAdmin />}
-        {activeTab === 'news' && <AdminNewsSection />}
-        {activeTab === 'account' && <AdminAccountSection />}
       </section>
     </div>
   )
