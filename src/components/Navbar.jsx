@@ -31,6 +31,7 @@ export default function Navbar() {
     { label: 'Vision & Mission', path: '/vision' },
     { label: 'Annual Report', path: '/reports' },
     { label: 'Donate', path: '/donate' },
+    { label: 'Admin', path: '/admin/login' }
   ]
 
   return (
