@@ -163,6 +163,11 @@ export async function uploadGallery({ title, file }) {
     throw new Error(data.error || 'Failed to upload image')
   }
 
+  // Transform image URL to include API base URL
+  if (data.src) {
+    data.src = data.src?.startsWith('/') ? `${API_BASE_URL}${data.src}` : data.src
+  }
+
   return data
 }
 
@@ -183,6 +188,14 @@ export async function uploadGalleryBatch({ files }) {
   const data = await res.json().catch(() => ({}))
   if (!res.ok) {
     throw new Error(data.error || 'Failed to upload images')
+  }
+
+  // Transform image URLs to include API base URL
+  if (data.images) {
+    data.images = data.images.map((img) => ({
+      ...img,
+      src: img.src?.startsWith('/') ? `${API_BASE_URL}${img.src}` : img.src,
+    }))
   }
 
   return data

@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "title": "Health Camp Initiative",
+    "src": "/uploads/gallery/health-camp.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Education Program",
+    "src": "/uploads/gallery/education.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Community Gathering",
+    "src": "/uploads/gallery/community.jpg"
+  }
+]
