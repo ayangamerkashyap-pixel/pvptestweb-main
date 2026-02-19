@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from '../styles/modules/Reports.module.css'
 import ReportsAdmin from './ReportsAdmin'
+import GalleryManager from '../components/GalleryManager'
 import {
   adminLogout,
   isAdminLoggedIn,
@@ -854,6 +855,7 @@ export default function AdminDashboard() {
             >
               {[
                 { id: 'gallery', label: 'Gallery Images' },
+                { id: 'gallery-manager', label: 'Gallery Manager (Batch)' },
                 { id: 'contact', label: 'Contact Details' },
                 { id: 'reports', label: 'Reports' },
                 { id: 'news', label: 'News & Events' },
@@ -899,6 +901,7 @@ export default function AdminDashboard() {
           </div>
 
           {activeTab === 'gallery' && <AdminGallerySection />}
+          {activeTab === 'gallery-manager' && <GalleryManager />}
           {activeTab === 'contact' && <AdminContactSection />}
           {activeTab === 'reports' && <ReportsAdmin />}
           {activeTab === 'news' && <AdminNewsSection />}
