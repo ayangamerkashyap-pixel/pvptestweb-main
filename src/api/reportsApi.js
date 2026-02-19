@@ -166,6 +166,28 @@ export async function uploadGallery({ title, file }) {
   return data
 }
 
+export async function uploadGalleryBatch({ files }) {
+  const formData = new FormData()
+  files.forEach((file) => {
+    formData.append('images', file)
+  })
+
+  const res = await fetch(`${API_BASE_URL}/api/gallery/batch`, {
+    method: 'POST',
+    headers: {
+      ...authHeaders(),
+    },
+    body: formData,
+  })
+
+  const data = await res.json().catch(() => ({}))
+  if (!res.ok) {
+    throw new Error(data.error || 'Failed to upload images')
+  }
+
+  return data
+}
+
 export async function deleteGalleryImage(id) {
   const res = await fetch(`${API_BASE_URL}/api/gallery/${id}`, {
     method: 'DELETE',

@@ -307,7 +307,7 @@ app.get('/api/gallery', (req, res) => {
   res.json(gallery)
 })
 
-// Admin: upload new gallery image
+// Admin: upload new gallery image (single)
 app.post('/api/gallery', requireAdmin, uploadGalleryImage.single('image'), (req, res) => {
   try {
     if (!req.file) {
@@ -327,6 +327,39 @@ app.post('/api/gallery', requireAdmin, uploadGalleryImage.single('image'), (req,
     res.status(201).json(entry)
   } catch (error) {
     console.error('Error uploading gallery image', error)
+    res.status(500).json({ error: 'Internal server error' })
+  }
+})
+
+// Admin: upload multiple gallery images (batch)
+app.post('/api/gallery/batch', requireAdmin, uploadGalleryImage.array('images', 20), (req, res) => {
+  try {
+    if (!req.files || req.files.length === 0) {
+      return res.status(400).json({ error: 'At least one image file is required' })
+    }
+
+    const gallery = readGallery()
+    const uploadedEntries = []
+
+    req.files.forEach((file) => {
+      const id = Date.now() + Math.random() * 1000 // Ensure unique IDs
+      const imageUrl = `/uploads/gallery/${file.filename}`
+      const entry = {
+        id: Math.floor(id),
+        title: file.originalname.replace(/\.[^/.]+$/, ''), // Remove extension as title
+        src: imageUrl,
+      }
+      gallery.push(entry)
+      uploadedEntries.push(entry)
+    })
+
+    writeGallery(gallery)
+    res.status(201).json({
+      message: `${uploadedEntries.length} image(s) uploaded successfully`,
+      images: uploadedEntries,
+    })
+  } catch (error) {
+    console.error('Error uploading gallery images', error)
     res.status(500).json({ error: 'Internal server error' })
   }
 })
