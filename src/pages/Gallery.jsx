@@ -1,16 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import styles from '../styles/modules/Gallery.module.css'
-import { fetchGallery } from '../api/reportsApi'
+import { galleryImages } from '../data/galleryData'
 
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState(null)
-  const [galleryImages, setGalleryImages] = useState([])
-
-  useEffect(() => {
-    fetchGallery()
-      .then(setGalleryImages)
-      .catch(() => {})
-  }, [])
 
   return (
     <div className={styles.galleryContainer}>
